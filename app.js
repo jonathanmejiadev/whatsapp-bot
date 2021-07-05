@@ -31,7 +31,7 @@ const withSession = () => {
     client.initialize();
 };
 
-//qrcode generate
+//Qrcode generate
 const withoutSession = () => {
     console.log('Session not saved');
     client = new Client();
@@ -53,12 +53,13 @@ const withoutSession = () => {
     client.initialize();
 };
 
+//Receive & send messages
 const listenMessage = () => {
     client.on('message', (msg) => {
         let { from, to, body } = msg;
-        //delete accent marks and lowercase
+        //Delete accent marks and lowercase
         body = body.toLowerCase().normalize("NFD").replace(/[\u0300-\u036f]/g, "");
-        //find key word to give a response
+        //Find then key word in botResponses
         body = body.split(' ').find(word => botResponses[word]);
         let response = botResponses[body] || 'El robot no puede responder a eso, vuelve a intentarlo.';
         sendMessage(from, response);
@@ -72,12 +73,13 @@ const sendMessage = (to, msg) => {
     client.sendMessage(to, msg);
 };
 
+//Send media (images,audio,documents)
 const sendMedia = (to, file) => {
     const mediaFile = MessageMedia.fromFilePath(`./media/${file}`);
     client.sendMessage(to, mediaFile);
 };
 
-//save number and message in a excel file
+//Save customer number and messages in a excel file
 const saveHistorial = (number, msg) => {
     const pathChat = `./chats/${number}.xlsx`;
     const workbook = new exceljs.Workbook();
@@ -100,7 +102,7 @@ const saveHistorial = (number, msg) => {
                     });
             });
     } else {
-        //create a xlsx file with phone number
+        //Create a xlsx file with phone number
         const worksheet = workbook.addWorksheet('Chats');
         worksheet.columns = [
             { header: 'Fecha', key: 'date' },
