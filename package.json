@@ -16,5 +16,15 @@
   "bugs": {
     "url": "https://github.com/jonathanmejiadev/whatsapp-bot/issues"
   },
-  "homepage": "https://github.com/jonathanmejiadev/whatsapp-bot"
+  "homepage": "https://github.com/jonathanmejiadev/whatsapp-bot",
+  "dependencies": {
+    "chalk": "^4.1.1",
+    "exceljs": "^4.2.1",
+    "express": "^4.17.1",
+    "mime-db": "^1.48.0",
+    "moment": "^2.29.1",
+    "ora": "^5.4.1",
+    "qrcode-terminal": "^0.12.0",
+    "whatsapp-web.js": "^1.12.6"
+  }
 }
